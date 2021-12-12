@@ -2,22 +2,120 @@
     import {onMount} from "svelte";
     import {stepProgress} from "./stores/store";
     import {graphicDesignDetailsChoice} from "./stores/store";
-    import FullColor from "./graphicChoiceTwoViews/FullColor.svelte";
-    import ThreeColors from "./graphicChoiceTwoViews/ThreeColors.svelte";
+    import {stepCount} from "./stores/store";
+    import {bodyChoice} from "./stores/store";
+    import {shadowChoice} from "./stores/store";
+    import {backgroundChoice} from "./stores/store";
+    import {additionalInfoChoice} from "./stores/store";
+    import {costChoice} from "./stores/store";
+    import {Link} from "svelte-navigator";
 
-    let graphicDesignChoice;
+    function goBackToStepOne() {
+        stepCount.set(1);
+        graphicDesignDetailsChoice.set('')
+    }
 
-    graphicDesignDetailsChoice.subscribe(value => {
-        graphicDesignChoice = value;
-    });
+    function goToStepThree() {
+        stepCount.set(3);
+    }
+
+    function goBackToHomePage() {
+        stepCount.set(1);
+        graphicDesignDetailsChoice.set('')
+        costChoice.set('')
+    }
+
+    function submitData() {}
 
     onMount(() => stepProgress.set(['Green', 'Blue', 'LightGray', 'LightGray']));
 </script>
 
-{#if graphicDesignChoice === "threeColors"}
-    <ThreeColors></ThreeColors>
-{:else if graphicDesignChoice === "fullColor"}
-    <FullColor></FullColor>
+{#if $graphicDesignDetailsChoice === "threeColors"}
+    <div class="pure-g" style="text-align: center">
+        <div class="pure-u-1-1">
+            <form method="POST" action="/login" on:submit={submitData}>
+                <div class="inputBox">
+                    <label for="body">Body Color</label>
+                    <input id="body" type="text" placeholder="" bind:value={$bodyChoice}>
+                    <br>
+                    <br>
+                </div>
+                <div class="inputBox">
+                    <label for="shadow">Shadow Color</label>
+                    <input id="shadow" type="text" placeholder="" bind:value={$shadowChoice}>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="inputBox">
+                    <label for="background">Background Color</label>
+                    <input id="background" type="text" placeholder="" bind:value={$backgroundChoice}>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="inputBox">
+                    <label for="additionalInfo">Add Additional Details</label>
+                    <textarea id="additionalInfo" rows="6" cols="35" bind:value={$additionalInfoChoice}></textarea>
+                </div>
+            </form>
+            <br>
+        </div>
+        <div class="pure-u-1-1">
+            <button on:click={() => goToStepThree()}>Next</button>
+            <br>
+            <br>
+        </div>
+        <div class="pure-u-1-1">
+            <button on:click={() => goBackToStepOne()}>Go Back To Step One</button>
+            <Link to="/artwork"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
+            <br>
+            <br>
+        </div>
+    </div>
+{:else if $graphicDesignDetailsChoice === "fullColor"}
+    <div class="pure-g" style="text-align: center">
+        <div class="pure-u-1-1">
+            <form method="POST" action="/login" on:submit={submitData}>
+                <div class="inputBox">
+                    <label for="additionalInfo2">Add Additional Details</label>
+                    <textarea id="additionalInfo2" name="additionalInfo" rows="6" cols="35" bind:value={$additionalInfoChoice}></textarea>
+                </div>
+            </form>
+            <br>
+        </div>
+        <div class="pure-u-1-1">
+            <Link to="/graphic"><button on:click={() => goToStepThree()}>Next</button></Link>
+            <br>
+            <br>
+        </div>
+        <div class="pure-u-1-1">
+            <Link to="/graphic"><button on:click={() => goBackToStepOne()}>Go Back To Step One</button></Link>
+            <Link to="/artwork"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
+            <br>
+            <br>
+        </div>
+    </div>
 {:else}
     This page is not a valid page!
 {/if}
+
+<style>
+    button {
+        width: 200px;
+    }
+
+    .inputBox {
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        resize: none;
+    }
+</style>

@@ -4,6 +4,7 @@
     import {stepProgress} from "./stores/store";
     import {graphicDesignDetailsChoice} from "./stores/store";
     import {stepCount} from "./stores/store";
+    import {costChoice} from "./stores/store";
 
     let choice;
 
@@ -14,6 +15,11 @@
     function changeChoice(value: string) {
         stepCount.update(x => x + 1)
         graphicDesignDetailsChoice.set(value);
+        if (value === "threeColors") {
+            costChoice.set("30");
+        } else if (value === "fullColor") {
+            costChoice.set("Estimate Will Be Provided");
+        }
     }
 
     onMount(() => {
@@ -22,10 +28,6 @@
 </script>
 
 <div class="pure-g" style="text-align: center">
-    <div class="pure-u-1-1">
-        <h2>Pick Design Details</h2>
-        <br>
-    </div>
     <div class="pure-u-1-2">
         <button on:click={() => changeChoice("threeColors")}>3 Colors + Black</button>
         <p>$30 Flat Rate</p>

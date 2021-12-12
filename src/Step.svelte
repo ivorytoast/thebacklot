@@ -1,5 +1,5 @@
 <script>
-    export let stepNumber;
+    export let stepDetail;
     export let color;
 </script>
 
@@ -7,12 +7,12 @@
     .design {
         border-top: solid 3px;
         padding-top: 15px;
-        width: 120px;
+        width: 100px;
         margin-left: 20px;
         text-align: center;
     }
 </style>
 
 <div>
-    <p class="design" style="border-color: {color}">Step {stepNumber}</p>
+    <p class="design" style="border-color: {color}">{stepDetail}</p>
 </div>

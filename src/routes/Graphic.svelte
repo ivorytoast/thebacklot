@@ -6,61 +6,59 @@
     import {stepProgress} from "../stores/store";
     import {stepCount} from "../stores/store";
     import {graphicDesignDetailsChoice} from "../stores/store";
+    import {artworkStyleChoice} from "../stores/store";
     import GraphicDecisionTwo from "../GraphicDecisionTwo.svelte";
     import {onMount} from "svelte";
-
-    let progress;
-    let step;
-    let graphicDesignChoice;
-
-    graphicDesignDetailsChoice.subscribe(value => {
-       graphicDesignChoice = value;
-    });
-
-    stepCount.subscribe(value => {
-        step = value;
-    });
-
-    stepProgress.subscribe(value => {
-        progress = value;
-    });
+    import Summary from "../Summary.svelte";
+    import Homepage from "./Homepage.svelte";
 
     onMount(() => {
         stepProgress.set(['Blue', 'LightGray', 'LightGray', 'LightGray']);
-        stepCount.set(1);
     });
 </script>
 
 <div class="centeredNav">
-    <h2>Commission Graphic Artwork!</h2>
+    {#if $stepCount === 1}
+        <h1>Graphic Or Pixel?</h1>
+    {:else if $stepCount === 2}
+        <h1>Finer Details...</h1>
+    {:else if $stepCount === 3}
+        <h1>Review and Submit Reference Photo!</h1>
+    {:else if $stepCount === 4}
+        <h1>Contact Details</h1>
+    {:else}
+        Not Found
+    {/if}
 </div>
 
 <div class="centeredNav">
-    <LeftStep stepNumber="{1}" color="{progress[0]}"></LeftStep>
-    <Step stepNumber="{2}" color="{progress[1]}"></Step>
-    <Step stepNumber="{3}" color="{progress[2]}"></Step>
+    <LeftStep stepDetail="Type" color="{$stepProgress[0]}"></LeftStep>
+    <Step stepDetail="Details" color="{$stepProgress[1]}"></Step>
+    <Step stepDetail="Photo" color="{$stepProgress[2]}"></Step>
+    <Step stepDetail="Contact" color="{$stepProgress[3]}"></Step>
 </div>
 
-<!--<p>Step: {step}</p>-->
-<!--<p>Progress: {progress}</p>-->
-<!--<p>Graphic Design Choice: {graphicDesignChoice}</p>-->
+<!--<p>Step: {$stepCount}</p>-->
+<!--<p>Progress: {$stepProgress}</p>-->
+<!--<p>Graphic Design Choice: {$graphicDesignDetailsChoice}</p>-->
+<!--<p>Artwork Style: {$artworkStyleChoice}</p>-->
 
 <div class="centeredBody">
-    {#if step === 1}
+    {#if $stepCount === 1}
 <!--        Here1-->
         <GraphicDecisionOne></GraphicDecisionOne>
-    {:else if step === 2}
+    {:else if $stepCount === 2}
 <!--        Here2-->
         <GraphicDecisionTwo></GraphicDecisionTwo>
-    {:else if step === 3}
+    {:else if $stepCount === 3}
 <!--        Here3-->
-        <GraphicDecisionTwo></GraphicDecisionTwo>
-    {:else if step === 4}
-<!--        Here4-->
-        <GraphicDecisionTwo></GraphicDecisionTwo>
+        <Summary></Summary>
+    {:else if $stepCount === 4}
+        <!--        Here3-->
+        <ContactInfo></ContactInfo>
     {:else}
 <!--        HereElse-->
-        <GraphicDecisionTwo></GraphicDecisionTwo>
+        <Homepage></Homepage>
     {/if}
 </div>
 
