@@ -1,30 +1,37 @@
-<script lang="ts">
-	export let name: string;
+<script>
+    import {Route, Router} from "svelte-navigator";
+    import Homepage from "./routes/Homepage.svelte";
+    import Artwork from "./routes/Artwork.svelte";
+    import Graphic from "./routes/Graphic.svelte";
+    import Pixel from "./routes/Pixel.svelte";
+    import Step from "./Step.svelte";
+    import GraphicDecisionTwo from "./GraphicDecisionTwo.svelte";
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<Router>
+    <main style="height: 99%; border: solid yellow 3px">
+        <Route path="artwork">
+            <Artwork />
+        </Route>
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+        <Route path="graphic">
+            <Graphic />
+        </Route>
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+        <Route path="pixel">
+            <Pixel/>
+        </Route>
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+        <Route path="graphicDecisionTwo">
+            <GraphicDecisionTwo/>
+        </Route>
+
+        <Route path="homepage">
+            <Homepage />
+        </Route>
+
+        <Route path="/">
+            <Homepage/>
+        </Route>
+    </main>
+</Router>
