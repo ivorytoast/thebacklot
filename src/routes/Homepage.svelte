@@ -13,7 +13,7 @@
 
 <style>
     main {
-        border: 2px solid blue;
+        /*border: 2px solid blue;*/
         height: 100%;
     }
     .centered {
@@ -21,6 +21,6 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        border: 2px solid green;
+        /*border: 2px solid green;*/
     }
 </style>

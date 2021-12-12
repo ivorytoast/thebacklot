@@ -5,11 +5,17 @@
     import GraphicDecisionOne from "../GraphicDecisionOne.svelte";
     import {stepProgress} from "../stores/store";
     import {stepCount} from "../stores/store";
+    import {graphicDesignDetailsChoice} from "../stores/store";
     import GraphicDecisionTwo from "../GraphicDecisionTwo.svelte";
     import {onMount} from "svelte";
 
     let progress;
     let step;
+    let graphicDesignChoice;
+
+    graphicDesignDetailsChoice.subscribe(value => {
+       graphicDesignChoice = value;
+    });
 
     stepCount.subscribe(value => {
         step = value;
@@ -20,7 +26,7 @@
     });
 
     onMount(() => {
-        stepProgress.set(['Blue', 'LightGrey', 'LightGray', 'LightGray', 'LightGray']);
+        stepProgress.set(['Blue', 'LightGray', 'LightGray', 'LightGray']);
         stepCount.set(1);
     });
 </script>
@@ -33,24 +39,27 @@
     <LeftStep stepNumber="{1}" color="{progress[0]}"></LeftStep>
     <Step stepNumber="{2}" color="{progress[1]}"></Step>
     <Step stepNumber="{3}" color="{progress[2]}"></Step>
-    <Step stepNumber="{4}" color="{progress[3]}"></Step>
 </div>
+
+<!--<p>Step: {step}</p>-->
+<!--<p>Progress: {progress}</p>-->
+<!--<p>Graphic Design Choice: {graphicDesignChoice}</p>-->
 
 <div class="centeredBody">
     {#if step === 1}
-        One
+<!--        Here1-->
         <GraphicDecisionOne></GraphicDecisionOne>
     {:else if step === 2}
-        Two
+<!--        Here2-->
         <GraphicDecisionTwo></GraphicDecisionTwo>
     {:else if step === 3}
-        Three
+<!--        Here3-->
         <GraphicDecisionTwo></GraphicDecisionTwo>
     {:else if step === 4}
-        Four
+<!--        Here4-->
         <GraphicDecisionTwo></GraphicDecisionTwo>
     {:else}
-        Five
+<!--        HereElse-->
         <GraphicDecisionTwo></GraphicDecisionTwo>
     {/if}
 </div>
@@ -59,14 +68,14 @@
     .centeredNav {
         display: flex;
         justify-content: center;
-        border: 2px solid green;
+        /*border: 2px solid green;*/
         margin-top: 30px;
     }
 
     .centeredBody {
         display: flex;
         justify-content: center;
-        border: 2px solid green;
+        /*border: 2px solid green;*/
         margin-top: 30px;
     }
 </style>

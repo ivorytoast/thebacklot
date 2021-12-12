@@ -14,10 +14,11 @@
     function changeChoice(value: string) {
         stepCount.update(x => x + 1)
         graphicDesignDetailsChoice.set(value);
-
     }
 
-    onMount(() => stepProgress.set(['Blue', 'LightGrey', 'LightGray', 'LightGray', 'LightGray']));
+    onMount(() => {
+        stepProgress.set(['Blue', 'LightGrey', 'LightGray', 'LightGray']);
+    });
 </script>
 
 <div class="pure-g" style="text-align: center">

@@ -7,7 +7,7 @@
     .design {
         border-top: solid 3px;
         padding-top: 15px;
-        width: 90px;
+        width: 120px;
         margin-left: 20px;
         text-align: center;
     }

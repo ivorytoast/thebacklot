@@ -9,6 +9,7 @@
 </script>
 
 <Router>
+<!--    <main style="height: 99%; border: solid yellow 3px">-->
     <main style="height: 99%; border: solid yellow 3px">
         <Route path="artwork">
             <Artwork />

@@ -14,7 +14,7 @@
 
 <style>
     main {
-        border: 2px solid blue;
+        /*border: 2px solid blue;*/
         height: 100%;
     }
 </style>

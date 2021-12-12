@@ -26,7 +26,7 @@
     .centeredBody {
         display: flex;
         justify-content: center;
-        border: 2px solid green;
+        /*border: 2px solid green;*/
         margin-top: 30px;
     }
 </style>
