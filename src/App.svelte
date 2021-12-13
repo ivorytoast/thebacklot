@@ -11,10 +11,6 @@
 <Router>
 <!--    <main style="height: 99%; border: solid yellow 3px">-->
     <main style="height: 99%">
-        <Route path="artwork">
-            <Artwork />
-        </Route>
-
         <Route path="graphic">
             <Graphic />
         </Route>

@@ -11,11 +11,18 @@
     import {onMount} from "svelte";
     import Summary from "../Summary.svelte";
     import Homepage from "./Homepage.svelte";
+    import ContactInfo from "../ContactInfo.svelte";
 
     onMount(() => {
         stepProgress.set(['Blue', 'LightGray', 'LightGray', 'LightGray']);
     });
 </script>
+
+<div class="header" style="text-align: center">
+    <div class="pure-menu pure-menu-horizontal">
+        <h1><a class="pure-menu-heading" href="homepage" style="padding-bottom: 0; padding-top: 0">The Back Lot</a></h1>
+    </div>
+</div>
 
 <div class="centeredNav">
     {#if $stepCount === 1}

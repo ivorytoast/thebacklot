@@ -37,6 +37,8 @@
     onMount(() => stepProgress.set(['Green', 'Green', 'Blue', 'LightGrey']));
 </script>
 
+<h1>Artwork Style Choice: {$artworkStyleChoice}</h1>
+
 {#if $artworkStyleChoice === "graphic"}
     <div class="pure-g" style="text-align: center">
         <div class="pure-u-1-1">
@@ -45,7 +47,7 @@
         <div class="pure-u-1-1 pure-u-md-12-24 pure-u-lg-12-24">
             <p><span class="title">Cost: </span>{$costChoice}</p>
             <p><span class="title">Artwork Style: </span>{$artworkStyleChoice}</p>
-            <p><span class="title">Illustration Type: </span>{$graphicDesignDetailsChoice}</p>
+            <p><span class="title">Color Choice: </span>{$graphicDesignDetailsChoice}</p>
             {#if $graphicDesignDetailsChoice === "threeColors"}
                 <p><span class="title">Body: </span>{$bodyChoice}</p>
                 <p><span class="title">Shadow: </span>{$shadowChoice}</p>
@@ -55,7 +57,6 @@
             {:else}
                 This page is not a valid page!
             {/if}
-            <p><span class="title">Color Preference: </span>{$graphicDesignDetailsChoice}</p>
             <p><span class="title">Additional Info: </span>{$additionalInfoChoice}</p>
         </div>
         <div class="pure-u-1-1 pure-u-md-11-24 pure-u-lg-11-24">
@@ -81,7 +82,7 @@
         </div>
         <div class="pure-u-1-1">
             <button on:click={() => goBackToStepTwo()}>Go Back To Step Two</button>
-            <Link to="/artwork"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
+            <Link to="/homepage"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
             <br>
             <br>
         </div>
