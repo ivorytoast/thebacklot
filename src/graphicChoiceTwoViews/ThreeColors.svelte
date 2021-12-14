@@ -49,7 +49,7 @@
 
         <div class="inputBox">
             <label for="background">Background Color</label>
-            <input id="background" type="text" placeholder="">
+            <input id="background" type="color" placeholder="">
             <br>
             <br>
         </div>

@@ -2,8 +2,6 @@
     import { Link } from "svelte-navigator";
 </script>
 
-
-
 <div>
     <div class="header" style="text-align: center">
         <div class="pure-menu pure-menu-horizontal">

@@ -26,32 +26,33 @@
         costChoice.set('')
     }
 
-    function submitData() {}
+    function submitData() {
+    }
 
     onMount(() => stepProgress.set(['Green', 'Blue', 'LightGray', 'LightGray']));
 </script>
 
 {#if $artworkStyleChoice === "graphic"}
     {#if $graphicDesignDetailsChoice === "threeColors"}
-    <div class="pure-g" style="text-align: center">
-        <div class="pure-u-1-1">
-            <form method="POST" action="/login" on:submit={submitData}>
+
+        <div class="pure-g" style="text-align: center">
+            <div class="pure-u-1-1">
                 <div class="inputBox">
                     <label for="body">Body Color</label>
-                    <input id="body" type="text" placeholder="" bind:value={$bodyChoice}>
+                    <input id="body" type="color" placeholder="" bind:value={$bodyChoice}>
                     <br>
                     <br>
                 </div>
                 <div class="inputBox">
                     <label for="shadow">Shadow Color</label>
-                    <input id="shadow" type="text" placeholder="" bind:value={$shadowChoice}>
+                    <input id="shadow" type="color" placeholder="" bind:value={$shadowChoice}>
                     <br>
                     <br>
                 </div>
 
                 <div class="inputBox">
                     <label for="background">Background Color</label>
-                    <input id="background" type="text" placeholder="" bind:value={$backgroundChoice}>
+                    <input id="background" type="color" placeholder="" bind:value={$backgroundChoice}>
                     <br>
                     <br>
                 </div>
@@ -60,91 +61,65 @@
                     <label for="additionalInfo">Add Additional Details</label>
                     <textarea id="additionalInfo" rows="6" cols="35" bind:value={$additionalInfoChoice}></textarea>
                 </div>
-            </form>
-            <br>
+                <br>
+            </div>
+            <div class="pure-u-1-1">
+                <button on:click={() => goToStepThree()}>Next</button>
+                <br>
+                <br>
+            </div>
+            <div class="pure-u-1-1">
+                <button on:click={() => goBackToStepOne()}>Go Back To Step One</button>
+                <Link to="/homepage">
+                    <button on:click={() => goBackToHomePage()}>Cancel Request</button>
+                </Link>
+                <br>
+                <br>
+            </div>
         </div>
-        <div class="pure-u-1-1">
-            <button on:click={() => goToStepThree()}>Next</button>
-            <br>
-            <br>
-        </div>
-        <div class="pure-u-1-1">
-            <button on:click={() => goBackToStepOne()}>Go Back To Step One</button>
-            <Link to="/homepage"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
-            <br>
-            <br>
-        </div>
-    </div>
-{:else if $graphicDesignDetailsChoice === "fullColor"}
-    <div class="pure-g" style="text-align: center">
-        <div class="pure-u-1-1">
-            <form method="POST" action="/login" on:submit={submitData}>
+
+    {:else if $graphicDesignDetailsChoice === "fullColor"}
+
+        <div class="pure-g" style="text-align: center">
+            <div class="pure-u-1-1">
                 <div class="inputBox">
                     <label for="additionalInfo2">Add Additional Details</label>
-                    <textarea id="additionalInfo2" name="additionalInfo" rows="6" cols="35" bind:value={$additionalInfoChoice}></textarea>
+                    <textarea id="additionalInfo2" name="additionalInfo" rows="6" cols="35"
+                              bind:value={$additionalInfoChoice}></textarea>
                 </div>
-            </form>
-            <br>
+                <br>
+            </div>
+            <div class="pure-u-1-1">
+                <button on:click={() => goToStepThree()}>Next</button>
+                <br>
+                <br>
+            </div>
+            <div class="pure-u-1-1">
+                <button on:click={() => goBackToStepOne()}>Go Back To Step One</button>
+                <Link to="/homepage">
+                    <button on:click={() => goBackToHomePage()}>Cancel Request</button>
+                </Link>
+                <br>
+                <br>
+            </div>
         </div>
-        <div class="pure-u-1-1">
-            <button on:click={() => goToStepThree()}>Next</button>
-            <br>
-            <br>
-        </div>
-        <div class="pure-u-1-1">
-            <button on:click={() => goBackToStepOne()}>Go Back To Step One</button>
-            <Link to="/homepage"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
-            <br>
-            <br>
-        </div>
-    </div>
-{:else}
-        This page is not a valid page!
-{/if}
-{/if}
 
-<!--/// -&#45;&#45;&#45;&#45;&#45;&#45;-->
+    {:else}
+
+        This page is not a valid page!
+
+    {/if}
+{/if}
 
 {#if $artworkStyleChoice === "pixel"}
     {#if $graphicDesignDetailsChoice === "vehicle"}
-        <div class="pure-g" style="text-align: center">
-            <div class="pure-u-1-1">
-                <form method="POST" action="/login" on:submit={submitData}>
-                    <div class="inputBox">
-                        <label for="background7">Background Color</label>
-                        <input id="background7" type="text" placeholder="" bind:value={$backgroundChoice}>
-                        <br>
-                        <br>
-                    </div>
 
-                    <div class="inputBox">
-                        <label for="additionalInfo6">Add Additional Details</label>
-                        <textarea id="additionalInfo6" rows="6" cols="35" bind:value={$additionalInfoChoice}></textarea>
-                    </div>
-                </form>
-                <br>
-            </div>
-            <div class="pure-u-1-1">
-                <button on:click={() => goToStepThree()}>Next</button>
-                <br>
-                <br>
-            </div>
-            <div class="pure-u-1-1">
-                <button on:click={() => goBackToStepOne()}>Go Back To Step One</button>
-                <Link to="/homepage"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
-                <br>
-                <br>
-            </div>
-        </div>
-    {:else if $graphicDesignDetailsChoice === "vehicleAndBackground"}
         <div class="pure-g" style="text-align: center">
             <div class="pure-u-1-1">
-                <form method="POST" action="/login" on:submit={submitData}>
-                    <div class="inputBox">
-                        <label for="additionalInfo18">Add Additional Details</label>
-                        <textarea id="additionalInfo18" rows="6" cols="35" bind:value={$additionalInfoChoice}></textarea>
-                    </div>
-                </form>
+                <div class="inputBox">
+                    <label for="additionalInfo6">Add Additional Details</label>
+                    <textarea id="additionalInfo6" rows="6" cols="35" bind:value={$additionalInfoChoice}></textarea>
+                </div>
                 <br>
             </div>
             <div class="pure-u-1-1">
@@ -154,13 +129,51 @@
             </div>
             <div class="pure-u-1-1">
                 <button on:click={() => goBackToStepOne()}>Go Back To Step One</button>
-                <Link to="/homepage"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
+                <Link to="/homepage">
+                    <button on:click={() => goBackToHomePage()}>Cancel Request</button>
+                </Link>
                 <br>
                 <br>
             </div>
         </div>
+
+    {:else if $graphicDesignDetailsChoice === "vehicleAndBackground"}
+
+        <div class="pure-g" style="text-align: center">
+            <div class="pure-u-1-1">
+                <div class="inputBox">
+                    <label for="background17">Background Color</label>
+                    <input id="background17" type="color" placeholder="" bind:value={$backgroundChoice}>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="inputBox">
+                    <label for="additionalInfo18">Add Additional Details</label>
+                    <textarea id="additionalInfo18" rows="6" cols="35"
+                              bind:value={$additionalInfoChoice}></textarea>
+                </div>
+                <br>
+            </div>
+            <div class="pure-u-1-1">
+                <button on:click={() => goToStepThree()}>Next</button>
+                <br>
+                <br>
+            </div>
+            <div class="pure-u-1-1">
+                <button on:click={() => goBackToStepOne()}>Go Back To Step One</button>
+                <Link to="/homepage">
+                    <button on:click={() => goBackToHomePage()}>Cancel Request</button>
+                </Link>
+                <br>
+                <br>
+            </div>
+        </div>
+
     {:else}
+
         This page is not a valid page!
+
     {/if}
 {/if}
 

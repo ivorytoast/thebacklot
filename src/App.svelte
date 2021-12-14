@@ -1,15 +1,11 @@
 <script>
     import {Route, Router} from "svelte-navigator";
     import Homepage from "./routes/Homepage.svelte";
-    import Artwork from "./routes/Artwork.svelte";
     import Graphic from "./routes/Graphic.svelte";
     import Pixel from "./routes/Pixel.svelte";
-    import GraphicDecisionTwo from "./GraphicDecisionTwo.svelte";
-    import Summary from "./Summary.svelte";
 </script>
 
 <Router>
-<!--    <main style="height: 99%; border: solid yellow 3px">-->
     <main style="height: 99%">
         <Route path="graphic">
             <Graphic />

@@ -1,5 +1,4 @@
 <script lang="ts">
-    import {Link} from "svelte-navigator";
     import {onMount} from "svelte";
     import {stepProgress} from "./stores/store";
     import {graphicDesignDetailsChoice} from "./stores/store";
@@ -74,57 +73,59 @@
     });
 </script>
 
-<!--<p>isThreeColorPicked: {isThreeColorsPicked}</p><br>-->
-<!--<p>isFullColorPicked: {isFullColorPicked}</p><br>-->
-<!--<p>isVehiclePicked: {isVehiclePicked}</p><br>-->
-<!--<p>isVehicleAndBackgroundPicked: {isVehicleAndBackgroundPicked}</p><br>-->
-<!--<p>isGraphicPicked: {isGraphicChoiceClicked}</p><br>-->
-<!--<p>isPixelPicked: {isPixelChoiceClicked}</p><br>-->
+<br>
+<br>
 
-<div>
 <div class="pure-g" style="text-align: center">
-    <div class="pure-u-1-2">
-        <button class:clicked={isGraphicChoiceClicked} on:click={() => changeArtworkChoice("graphic")}>Graphic Illustration</button>
-    </div>
-    <div class="pure-u-1-2">
-        <button class:clicked={isPixelChoiceClicked} on:click={() => changeArtworkChoice("pixel")}>Pixel Illustration</button>
+    <div class="pure-u-1-1">
+        <button style="margin-right: 10px" class:clicked={isGraphicChoiceClicked}
+                on:click={() => changeArtworkChoice("graphic")}>Graphic Illustration
+        </button>
+        <button class:clicked={isPixelChoiceClicked} on:click={() => changeArtworkChoice("pixel")}>Pixel Illustration
+        </button>
     </div>
 </div>
 
-    <br>
+<br>
+<br>
 
-    <br>
-    {#if isGraphicChoiceClicked}
+{#if isGraphicChoiceClicked}
     <div class="pure-g" style="text-align: center">
-        <div class="pure-u-1-2">
-            <button class:clicked={isThreeColorsPicked} on:click={() => changeChoice("threeColors")}>3 Colors + Black</button>
-            <p>$30 Flat Rate</p>
-        </div>
-        <div class="pure-u-1-2">
-            <button class:clicked={isFullColorPicked} on:click={() => changeChoice("fullColor")}>Full Color</button>
-            <p>Estimate Will Be Given</p>
-        </div>
-    </div>
-        {/if}
-    {#if isPixelChoiceClicked}
-    <div class="pure-g" style="text-align: center">
-        <div class="pure-u-1-2">
-            <button class:clicked={isVehiclePicked} on:click={() => changeChoice("vehicle")}>Just Vehicle</button>
-            <p>$50 Flat Rate</p>
-        </div>
-        <div class="pure-u-1-2">
-            <button class:clicked={isVehicleAndBackgroundPicked} on:click={() => changeChoice("vehicleAndBackground")}>Vehicle + Background and/or Character</button>
-            <p>Estimate Will Be Given</p>
-        </div>
-    </div>
-    {/if}
-    {#if (isGraphicChoiceClicked || isPixelChoiceClicked) && ((isVehiclePicked || isVehicleAndBackgroundPicked) || (isThreeColorsPicked || isFullColorPicked))}
         <div class="pure-u-1-1">
-            <br>
-            <button on:click={() => continueNextStep()}>Continue</button>
+            <button style="margin-right: 10px" class:clicked={isThreeColorsPicked}
+                    on:click={() => changeChoice("threeColors")}>3 Colors + Black
+            </button>
+            <button class:clicked={isFullColorPicked} on:click={() => changeChoice("fullColor")}>Full Color</button>
         </div>
-    {/if}
-</div>
+    </div>
+{/if}
+
+{#if isPixelChoiceClicked}
+    <div class="pure-g" style="text-align: center">
+        <div class="pure-u-1-1">
+            <button style="margin-right: 10px" class:clicked={isVehiclePicked} on:click={() => changeChoice("vehicle")}>
+                Just Vehicle
+            </button>
+            <button class:clicked={isVehicleAndBackgroundPicked} on:click={() => changeChoice("vehicleAndBackground")}>
+                Vehicle + Background + Character
+            </button>
+        </div>
+    </div>
+{/if}
+
+<br>
+
+{#if (isGraphicChoiceClicked || isPixelChoiceClicked) && ((isVehiclePicked || isVehicleAndBackgroundPicked) || (isThreeColorsPicked || isFullColorPicked))}
+    <div class="pure-u-1-1" style="text-align: center">
+        <br>
+        <button id="continue" on:click={() => continueNextStep()}>Continue</button>
+    </div>
+{/if}
+
+<br>
+<br>
+<br>
+<br>
 
 <style>
     .clicked {
@@ -133,5 +134,13 @@
 
     button {
         width: 200px;
+        height: 200px;
+        font-size: 10px;
+    }
+
+    #continue {
+        width: 250px;
+        height: 40px;
+        font-size: 20px;
     }
 </style>

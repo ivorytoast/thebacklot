@@ -10,11 +10,6 @@
     import {stepCount} from "./stores/store";
     import {costChoice} from "./stores/store";
     import {Link} from "svelte-navigator";
-    import {writable} from "svelte/store";
-
-    function doSomething() {
-
-    }
 
     function goBackToStepTwo() {
         stepCount.set(2);
@@ -37,14 +32,9 @@
     onMount(() => stepProgress.set(['Green', 'Green', 'Blue', 'LightGrey']));
 </script>
 
-<h1>Artwork Style Choice: {$artworkStyleChoice}</h1>
-
 {#if $artworkStyleChoice === "graphic"}
     <div class="pure-g" style="text-align: center">
         <div class="pure-u-1-1">
-            <h1>Review Details!</h1>
-        </div>
-        <div class="pure-u-1-1 pure-u-md-12-24 pure-u-lg-12-24">
             <p><span class="title">Cost: </span>{$costChoice}</p>
             <p><span class="title">Artwork Style: </span>{$artworkStyleChoice}</p>
             <p><span class="title">Color Choice: </span>{$graphicDesignDetailsChoice}</p>
@@ -59,19 +49,34 @@
             {/if}
             <p><span class="title">Additional Info: </span>{$additionalInfoChoice}</p>
         </div>
-        <div class="pure-u-1-1 pure-u-md-11-24 pure-u-lg-11-24">
-            <div class="centered">
-                <div class="inputBox">
-                    <div>
-                        <h1>Please Attach a Reference Photo!</h1>
-                    </div>
-                    <div>
-                        <div><input type="file" id="img" name="img" accept="image/*"></div>
-                    </div>
-                    <br>
-                    <br>
-                </div>
-            </div>
+        <div class="pure-u-1-1">
+            <br>
+            <br>
+            <button on:click={() => goToStepFour()}>Next</button>
+            <br>
+            <br>
+        </div>
+        <div class="pure-u-1-1">
+            <button on:click={() => goBackToStepTwo()}>Go Back To Step Two</button>
+            <Link to="/homepage"><button on:click={() => goBackToHomePage()}>Cancel Request</button></Link>
+            <br>
+            <br>
+        </div>
+    </div>
+{/if}
+
+{#if $artworkStyleChoice === "pixel"}
+    <div class="pure-g" style="text-align: center">
+        <div class="pure-u-1-1">
+            <p><span class="title">Cost: </span>{$costChoice}</p>
+            <p><span class="title">Artwork Style: </span>{$artworkStyleChoice}</p>
+            {#if $graphicDesignDetailsChoice === "vehicle"}
+            {:else if $graphicDesignDetailsChoice === "vehicleAndBackground"}
+                <p><span class="title">Background: </span>{$backgroundChoice}</p>
+            {:else}
+                This page is not a valid page!
+            {/if}
+            <p><span class="title">Additional Info: </span>{$additionalInfoChoice}</p>
         </div>
         <div class="pure-u-1-1">
             <br>
